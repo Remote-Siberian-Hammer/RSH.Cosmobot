@@ -1,0 +1,39 @@
+.btn-cb:hover{
+    transition: .6s;
+    color: #fff;
+    background: linear-gradient(90deg,#84bce8 0%,#7adf7a 100%);
+}
+
+header nav ul li.nav-item a.nav-link:hover,
+header nav a.navbar-brand:hover small,
+footer a:hover{
+    transition: .6s;
+    color: #7adf7a;
+}
+
+.btn-tg:hover,
+.btn-vk:hover,
+.btn-google:hover{
+    transition: .6s;
+    background-color: #f1f1f1;
+    color: #222;
+}
+.btn-tg:hover svg,
+.btn-vk:hover svg,
+.btn-google:hover svg{
+    transition: .6s;
+    fill: #222!important;
+}
+.btn-tg:hover{
+    transition: .6s;
+    border: solid #0088cc 0.1em;
+}
+.btn-vk:hover{
+    transition: .6s;
+    border: solid #0077ff 0.1em;
+}
+.btn-google:hover{
+    transition: .6s;
+    border: solid #ff6a31 0.1em;
+}
+

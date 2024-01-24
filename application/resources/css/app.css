@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,
+body{
+    height: 100%;
+}
+header{
+    box-shadow: 4px 0px 10px 0px #2229;
+    z-index: 9999999999;
+}
+a{
+    text-decoration: none;
+}
+header nav ul li.nav-item a.nav-link,
+footer a{
+    color: #309138;
+}
+header nav a.navbar-brand small,
+footer a.navbar-brand small{
+    color: #87e98f;
+}
+ul li{
+    list-style: none;
+}
+
+.btn-cb{
+    color: #fff;
+    background: linear-gradient(90deg,#88b6d9 0%,#87ef87 100%);
+    box-shadow: 0px 0px 1px 0px #222;
+    border-radius: 3em;
+}
+
+.wrapper{
+    min-height: 100%;
+}
+
+section.home-banner{
+    background-image: url(https://wazzup24.ru/wp-content/uploads/2022/03/chat-bot-1024x512.png);
+    background-size: 50%;
+    background-position: left;
+    min-height: 35em;
+    background-repeat: no-repeat;
+}
+.h-34{
+    height: 34em;
+}
+.cb-green{
+    box-shadow: 5px 5px 10px 5px #d5eee4;
+    background: linear-gradient(40deg, rgba(136,182,217,0.42620798319327735) 0%, rgba(135,233,143,0.3029986834733894) 55%, rgba(136,182,217,0.42620798319327735) 100%);
+}
+.btn-tg,
+.btn-vk,
+.btn-google{
+    color: #fff;
+}
+.btn-tg{
+    background-color: #0088cc;
+}
+.btn-vk{
+    background-color: #0077ff;
+}
+.btn-google{
+    background-color: #ff6a31;
+}
+.br-0{
+    border-radius: 0;
+}
+
+/* constructor */
+#construct{
+    min-height: 100%;
+    background-color: rgb(230, 230, 231);
+    overflow-x: auto;
+}
+#construct .prt-2{
+    position: relative;
+    top: 2em;
+}
+#construct .btn-add-dialog{
+    background-color: #88d3b0;
+    color: #fff;
+    font-weight: 600;
+}
+.bot .card{
+    box-shadow: -1px 2px 11px 3px rgba(34, 60, 80, 0.08);
+    display: block;
+}
+.bot-start{
+    margin: 0 auto;
+    position: relative;
+    top: 30%;
+    left: 0%;
+    right: 0%;
+    width: fit-content;
+}
+.bot .bot-elements{
+    border: dashed rgb(183 183 183) 0.15em;
+    cursor: pointer;
+}
+.bot .bot-elements:hover,
+.bot .bot-elements-active{
+    transition: .6s;
+    border: dashed #88b6d9 0.15em;
+}
+.bot .bot-elements:hover svg,
+.bot .bot-elements-active svg{
+    transition: .6s;
+    fill: #87ef87!important;
+}
+
+.bot .btn-add-dialog form input{
+    background-color: #88d3b0;
+    border: none;
+    padding: 0;
+}
+#branch-dialog-left,
+#branch-dialog-right{
+    background-color: white;
+    width: 1.2em;
+    height: 1.2em;
+    position: absolute;
+    border: solid #222;
+    border-radius: 5em;
+    z-index: 99999;
+}
+#branch-dialog-left:hover,
+#branch-dialog-right:hover{
+    transition: .6s;
+    background-color: #88d3b0;
+    border: solid #fff;
+}
+#branch-dialog-left{
+    margin-top: 0.2em;
+    left: -3%;
+}
+#branch-dialog-right{
+    margin-top: -1.3em;
+    right: -3%;
+}
+#mouse-follower {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.point_listner #branch-dialog-left{
+    top: 65%!important;
+}
+.point_listner #branch-dialog-right{
+    bottom: 26%!important;
+}
+/* end constructor */
+.mt-6{
+    margin-top: 6em;
+}
