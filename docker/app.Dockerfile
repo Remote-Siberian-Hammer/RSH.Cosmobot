@@ -1,6 +1,6 @@
 FROM php:8.2-fpm-buster
 
-WORKDIR /var/www/application
+WORKDIR /var/www/src
 EXPOSE 5173
 RUN apt-get update && \
     apt-get install -y libpq-dev && \

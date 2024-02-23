@@ -1,5 +1,5 @@
 FROM composer:latest
 
-WORKDIR /var/www/application
+WORKDIR /var/www/src
 
 ENTRYPOINT ["composer", "--ignore-platform-reqs"]
