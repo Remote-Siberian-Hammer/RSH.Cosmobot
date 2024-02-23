@@ -1,0 +1,4 @@
+dev:
+  type: http
+  region: us
+  to: localhost:5000

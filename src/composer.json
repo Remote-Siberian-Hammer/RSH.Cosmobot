@@ -1,0 +1,14 @@
+{
+    "require": {
+        "php-di/php-di": "^7.0",
+        "twig/twig": "^3.8",
+        "klein/klein": "^2.1",
+        "doctrine/orm": "^3.0",
+        "doctrine/dbal": "^4.0",
+        "doctrine/migrations": "^3.7",
+        "symfony/cache": "^7.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.1"
+    }
+}

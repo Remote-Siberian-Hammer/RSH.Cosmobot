@@ -1,0 +1,35 @@
+{
+    "update_id": 473925412,
+    "message": {
+        "message_id": 18239,
+        "from": {
+            "id": 1454840309,
+            "is_bot": false,
+            "first_name": "Вячеслав",
+            "last_name": "Миронов",
+            "username": "vuacheslav_M_I_R_O_N_O_V",
+            "language_code": "ru"
+        },
+        "chat": {
+            "id": -1001525212438,
+            "title": "Миньоны",
+            "type": "supergroup"
+        },
+        "date": 1708342295,
+        "new_chat_participant": {
+            "id": 6742010369,
+            "is_bot": true,
+            "first_name": "CosmoBot",
+            "username": "cosmobot_manager_bot"
+        },
+        "new_chat_member": {
+            "id": 6742010369,
+            "is_bot": true,
+            "first_name": "CosmoBot",
+            "username": "cosmobot_manager_bot"
+        },
+        "new_chat_members": [
+        {"id": 6742010369, "is_bot": true, "first_name": "CosmoBot", "username": "cosmobot_manager_bot"}
+        ]
+    }
+}

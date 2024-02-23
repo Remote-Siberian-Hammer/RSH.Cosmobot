@@ -1,0 +1,109 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-10">
+            <div class="col-xxl-5">
+                <h2 class="mb-4">УДОБНОЕ РЕШЕНИЕ ДЛЯ РАБОТЫ ВАШЕГО БИЗНЕСА В МЕССЕНДЖЕРАХ</h2>
+                <ul>
+                    <li class="mt-3"><h4>no-code конструктор сценариев</h4></li>
+                    <li class="mt-3"><h4>неограниченное количество подключенных каналов</h4></li>
+                    <li class="mt-3"><h4>удобныйе шаблоны для быстрого старта</h4></li>
+                </ul>
+            </div>
+            <div class="col-xxl-7">
+                <iframe
+                    src="https://www.youtube.com/embed/_J6FXBTjr5E"
+                    title="Как создать бота в Telegram / 5 простых правил конструктора"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div id="opportunity" class="container mt-10 p-4">
+        <h2 class="text-center">НА ЧТО СПОСОБЕН КОНСТРУКТОР?</h2>
+        <div class="row">
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-1.png') }}" alt="Цепочка">
+                <p>
+                    <strong>Гибкая цепочка сообщений, благодаря которой вы можете без знаний программирования создавать диалоговые сценарии</strong>
+                </p>
+            </div>
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-2.png') }}" alt="Мессенджеры">
+                <p>
+                    <strong>Создавайте один сценарий, но на разные мессенджеры</strong>
+                </p>
+            </div>
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-3.png') }}" alt="Безопасность">
+                <p>
+                    <strong>Безопасное администрирование чат-ботов, как на платформе так и в самих ботах</strong>
+                </p>
+            </div>
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-4.png') }}" alt="Комбинации">
+                <p>
+                    <strong>Вы можете легко комбинировать предоставляемый платформой функционал, создавая уникальных чат-ботов</strong>
+                </p>
+            </div>
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-5.png') }}" alt="Аналитика">
+                <p>
+                    <strong>Настройте получение аналитики работы как одного конкретного бота, так и общую аналитику по чат-ботам</strong>
+                </p>
+            </div>
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-6.png') }}" alt="Рассылки">
+                <p>
+                    <strong>Конструктор рассылок поможет вам быстро информировать клиентов</strong>
+                </p>
+            </div>
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-7.png') }}" alt="Решения">
+                <p>
+                    <strong>Виджеты, плагины, переменные бота и API доступны на нашей платформе по платному тарифу</strong>
+                </p>
+            </div>
+            <div class="col-xxl-3 mt-5 text-center">
+                <img class="img-fluid w-25 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/opportunity-8.png') }}" alt="База">
+                <p>
+                    <strong>Загляните в нашу обширную базу знаний, там вы найдёте множество инструкций для на каждый тип бота</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-10">
+        <div class="row">
+            <div class="col-xxl-9">
+                <img class="img-fluid w-100 d-block mx-auto" src="{{ base_url }}/{{ load_static('images/constructor-screen.jpg') }}" alt="Скриншот">
+            </div>
+            <div class="col-xxl-3">
+                <h3>NO CODE конструктор</h3>
+                <br>
+                <h4>Экономьте время <br> Мы предоставляем готовое решение для работы вашего бизнеса в мессенджерах</h4>
+                <br>
+                <section>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" style="fill: rgba(108, 166, 236, 1);">
+                        <path d="M21.579 6.855c.14-.465 0-.806-.662-.806h-2.193c-.558 0-.813.295-.953.619 0 0-1.115 2.719-2.695 4.482-.51.513-.743.675-1.021.675-.139 0-.341-.162-.341-.627V6.855c0-.558-.161-.806-.626-.806H9.642c-.348 0-.558.258-.558.504 0 .528.79.65.871 2.138v3.228c0 .707-.127.836-.407.836-.743 0-2.551-2.729-3.624-5.853-.209-.607-.42-.852-.98-.852H2.752c-.627 0-.752.295-.752.619 0 .582.743 3.462 3.461 7.271 1.812 2.601 4.363 4.011 6.687 4.011 1.393 0 1.565-.313 1.565-.853v-1.966c0-.626.133-.752.574-.752.324 0 .882.164 2.183 1.417 1.486 1.486 1.732 2.153 2.567 2.153h2.192c.626 0 .939-.313.759-.931-.197-.615-.907-1.51-1.849-2.569-.512-.604-1.277-1.254-1.51-1.579-.325-.419-.231-.604 0-.976.001.001 2.672-3.761 2.95-5.04z"></path>
+                    </svg> <span><strong>Вконтакте</strong></span>
+                </section>
+                <section>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" style="fill: rgba(108, 166, 236, 1);">
+                        <path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"></path>
+                    </svg> <span><strong>Телеграм</strong></span>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-10">
+        <div class="col-7 mx-auto text-center">
+            <div class="card p-4">
+                <h3>Нет времени разбираться?</h3>
+                <br>
+                <p>Заполните форму и мы свяжемся с Вами в ближайшее время</p>
+                <a href="#" class="btn btn-cb p-2 w-50 d-block mx-auto">Оставить заявку</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

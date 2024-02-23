@@ -1,0 +1,37 @@
+<?php
+global $app;
+global $container;
+
+use Http\Controllers\HomeController;
+use Http\Controllers\BotController;
+use Http\Controllers\UserController;
+use Http\Controllers\Form\UserFormController;
+use Http\Middleware\DMLMiddleware;
+
+require_once __DIR__ . '/config/bootstrap.php';
+require_once __DIR__ . '/http/Middleware/DMLMiddleware.php';
+
+
+$app->get('/', function () use ($container) {
+    return $container->get(HomeController::class)->index();
+});
+$app->with('/auth', function () use ($app, $container) {
+    $app->get('/social/telegram/callback', function () use ($container) {
+        $container->get(UserFormController::class)->telegram_callback($_GET);
+        new DMLMiddleware();
+    });
+    $app->get('/social/vk/callback', function () use ($container) {
+        $container->get(UserFormController::class)->vk_callback($_GET);
+        new DMLMiddleware();
+    });
+});
+$app->with('/user', function () use ($app, $container) {
+    $app->get('/login', function () use ($container) {
+        return $container->get(UserController::class)->login();
+    });
+});
+$app->with('/bot', function () use ($app, $container) {
+    $app->get('/constructor', function () use ($container) {
+        return $container->get(BotController::class)->get_creator();
+    });
+});
