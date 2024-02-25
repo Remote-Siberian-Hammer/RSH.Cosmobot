@@ -117,6 +117,13 @@ iframe{
     border-radius: 1em;
 }
 
+#bot_saving{
+    width: 9em;
+    position: absolute;
+    left: 90%;
+    top: 85%;
+}
+
 /* Отступы */
 .mt-10{
     margin-top: 10em;

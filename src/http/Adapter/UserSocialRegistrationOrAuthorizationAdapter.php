@@ -31,11 +31,12 @@ class CreateAccount extends UserService implements UserSocialRegistrationOrAutho
     {
         $this->creation($context);
         $user = $this->getByPlatformId($context->platformId);
-        setcookie("user_id", $user->id);
-        setcookie("user_platform_id", $user->platformId);
-        setcookie("user_first_name", $user->firstName);
-        setcookie("user_last_name", $user->lastName);
-        setcookie("user_platform", $user->platformAuthentication);
+        $cookieTime = 9999;
+        setcookie("user_id", $user->id, time() + $cookieTime, "/");
+        setcookie("user_platform_id", $user->platformId, time() + $cookieTime, "/");
+        setcookie("user_first_name", $user->firstName, time() + $cookieTime, "/");
+        setcookie("user_last_name", $user->lastName, time() + $cookieTime, "/");
+        setcookie("user_platform", $user->platformAuthentication, time() + $cookieTime, "/");
         return $user;
     }
 }
@@ -45,11 +46,12 @@ class AuthAccount extends UserService implements UserSocialRegistrationOrAuthori
     public function set_cookie(UserRequest $context): UserEntity
     {
         $user = $this->getByPlatformId($context->platformId);
-        setcookie("user_id", $user->id);
-        setcookie("user_platform_id", $user->platformId);
-        setcookie("user_first_name", $user->firstName);
-        setcookie("user_last_name", $user->lastName);
-        setcookie("user_platform", $user->platformAuthentication);
+        $cookieTime = 9999;
+        setcookie("user_id", $user->id, time() + $cookieTime, "/");
+        setcookie("user_platform_id", $user->platformId, time() + $cookieTime, "/");
+        setcookie("user_first_name", $user->firstName, time() + $cookieTime, "/");
+        setcookie("user_last_name", $user->lastName, time() + $cookieTime, "/");
+        setcookie("user_platform", $user->platformAuthentication, time() + $cookieTime, "/");
         return $user;
     }
 }

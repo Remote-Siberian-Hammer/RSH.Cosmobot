@@ -6,15 +6,15 @@ use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use domain\Entities\UserEntity;
 use http\DTO\Users\UserRequest;
-use Http\Factory\AuthSocialTelegram;
-use Http\Factory\AuthSocialVk;
+use Http\Factory\SocialTelegramFactory;
+use Http\Factory\SocialVkFactory;
 
 class UserFormController
 {
-    private AuthSocialTelegram $_authSocialTelegram;
-    private AuthSocialVk $_authSocialVk;
+    private SocialTelegramFactory $_authSocialTelegram;
+    private SocialVkFactory $_authSocialVk;
 
-    public function __construct(AuthSocialTelegram $authSocialTelegram, AuthSocialVk $authSocialVk)
+    public function __construct(SocialTelegramFactory $authSocialTelegram, SocialVkFactory $authSocialVk)
     {
         $this->_authSocialTelegram = $authSocialTelegram;
         $this->_authSocialVk = $authSocialVk;
@@ -34,13 +34,17 @@ class UserFormController
             'last_name' => $callback_data['last_name'],
             'hash_key' => $callback_data['hash'],
         ]);
-        if ($this->_authSocialTelegram->auth($row))
+        if (get_class($this->_authSocialTelegram->setCookie()->auth($row)) == UserEntity::class)
         {
+            var_dump(UserEntity::class);
             header("Location: /");
             exit();
         }
-        header("Location: /?error_mode=auth");
-        exit();
+        else
+        {
+            header("Location: /?error_mode=auth");
+            exit();
+        }
     }
     public function vk_callback(array $callback_data): void
     {
@@ -52,12 +56,23 @@ class UserFormController
             'last_name' => $callback_data['last_name'],
             'hash_key' => $callback_data['hash'],
         ]);
-        if ($this->_authSocialVk->auth($row))
+        if ($this->_authSocialVk->setCookie()->auth($row))
         {
             header("Location: /");
             exit();
         }
         header("Location: /?error_mode=auth");
+        exit();
+    }
+
+    public function logout(): void
+    {
+        setcookie('user_id', '', -1, "/");
+        setcookie('user_platform_id', '', -1, "/");
+        setcookie('user_first_name', '', -1, "/");
+        setcookie('user_last_name', '', -1, "/");
+        setcookie('user_platform', '', -1, "/");
+        header("Location: /");
         exit();
     }
 }

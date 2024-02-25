@@ -66,11 +66,7 @@ final class AuthSocialVk implements SocialInterface
      */
     public function auth(UserRequest $context): UserEntity
     {
-        global $entityManager;
-        $obj = new UserEntity;
-        $row = $obj($context);
-        $entityManager->persist($row);
-        $entityManager->flush();
-        return $row;
+        $adapter = new UserSocialRegistrationOrAuthorizationAdapter();
+        return $adapter->authorization($context);
     }
 }

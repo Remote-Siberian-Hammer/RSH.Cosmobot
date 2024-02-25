@@ -26,34 +26,41 @@
                     </a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-auto mx-auto">
-                            {# GUEST #}
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">О СЕРВИСЕ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">КЕЙСЫ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">ПРАЙС</a>
-                            </li>
+                            {% if auth() == false %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">О СЕРВИСЕ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">КЕЙСЫ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">ПРАЙС</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/bot/constructor?access=demo">ДЕМО</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/bot/constructor">КОНСТРУКТОР</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">МОИ БОТЫ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">РАССЫЛКИ</a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="#">БЛОГ</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/bot/constructor?access=demo">ДЕМО</a>
-                            </li>
-                            {# Auth #}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link" href="/bot/constructor">КОНСТРУКТОР</a>#}
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link" href="#">МОИ БОТЫ</a>#}
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link" href="#">РАССЫЛКИ</a>#}
-{#                            </li>#}
                         </ul>
-                        <a href="/user/login" class="btn btn-cb">Начать бесплатно</a>
+                        {% if auth() %}
+                            <form action="/user/form/logout" method="post">
+                                <input type="submit" class="btn btn-cb" value="Выход">
+                            </form>
+                        {% else %}
+                            <a href="/user/login" class="btn btn-cb">Начать бесплатно</a>
+                        {% endif %}
                     </div>
                 </div>
             </nav>

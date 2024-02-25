@@ -22,7 +22,6 @@ class EventHandler:
                 pass
 
     def handler(self) -> EventMessage:
-        print(self.meta.get_json())
         message = self.meta.get_json()['message']
         if message["chat"]["id"] > 0 and "text" in message.keys():
             return self.eventMessageFormat(EventType.USER_MESSAGE)

@@ -6,7 +6,8 @@
             {# Информация о боте #}
             <div id="botInfo" class="container" style="display: block">
                 <div class="mt-5"></div>
-                <form>
+                <form class="form">
+                    <input type="hidden" id="bot_owner_id" value="{{ get_cookie('user_id') }}">
                     <div class="mb-3">
                         <label for="inputBotName" class="form-label">Имя бота</label>
                         <input type="text"
@@ -80,6 +81,9 @@
                     <path d="M8 16h8v2H8z"></path>
                 </svg>
             </div>
+            <section id="bot_saving" class="p-1">
+                <button type="submit" class="btn btn-cb">Создать бота</button>
+            </section>
             <small class="text-primary">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -118,7 +122,22 @@
             </div>
         </div>
     </section>
+
     <script src="https://cdn.jsdelivr.net/npm/plain-draggable@2.5.14/plain-draggable.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/leader-line-new@1.1.9/leader-line.min.js" type="text/javascript"></script>
     <script src="{{ base_url }}/{{ load_static('js/constructor.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        document.querySelector('#bot').click();
+    </script>
+    <script type="text/javascript">
+        document.querySelector('#bot_saving')
+            .addEventListener('click', function (){
+                bot.info.owner = document.querySelector('#bot_owner_id').value;
+                let xhr = new XMLHttpRequest();
+                //TODO: Сделать урл базовым
+                xhr.open('POST', 'http://127.0.0.1:5000/api/bot/registration', true);
+                xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhr.send(JSON.stringify(bot));
+            })
+    </script>
 {% endblock %}

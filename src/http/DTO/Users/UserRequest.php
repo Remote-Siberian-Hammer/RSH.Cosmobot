@@ -12,6 +12,7 @@ final class UserRequest
 
     public function __invoke(array $param): UserRequest
     {
+
         $obj = $this;
         $obj->platformId = $param['platform_id'];
         $obj->platformAuthentication = $param['platform_authentication'];
