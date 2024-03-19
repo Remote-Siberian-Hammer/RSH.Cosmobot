@@ -66,8 +66,8 @@ services:
     volumes:
       - ./bot:/var/www/bot
     command: python main.py
-    networks:
-      - bot
+#    networks:
+#      - bot
   #      - bridge
 
   mongodb:

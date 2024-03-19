@@ -33,8 +33,43 @@ let bot = {
             tg: ''
         }
     },
-    messages_chain: [{id: 0, text: '', buttons: [], next_step: null}]
+    messages_chain: [{id: null, text: '', buttons: [], next_step: null}]
 };
+add_active = (chain_id, mode="parent") =>
+{
+    for (let i =0; i < document.querySelectorAll('.bot').length; i++)
+    {
+        document.querySelectorAll('.bot')[i].classList.remove('bot-active');
+    }
+    var el = document.getElementById(chain_id);
+    if (mode === "children")
+    {
+        el.addEventListener('click', function (event){
+            try {
+                document.getElementById(event.target.offsetParent.id).classList.add('bot-active');
+                return;
+            }
+            catch (TypeError)
+            {
+                document.getElementById(
+                    event.target
+                        .offsetParent
+                        .offsetParent
+                        .id
+                ).classList.add('bot-active');
+                return;
+            }
+        });
+    }
+    else{
+        try
+        {
+            el.classList.add('bot-active');
+        }
+        catch (TypeError) {}
+        return;
+    }
+}
 function GENERATE_UUID()
 {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
@@ -44,20 +79,51 @@ function GENERATE_UUID()
             return c == 'x' ? r : (r & 0x3 | 0x8).toString(16);
         });
 }
+var idx = GENERATE_UUID();
+// Создание стартового элемента
+const start_uuid = `action-${idx}`;
+bot.messages_chain[0].id = start_uuid;
+document.querySelector('#bot_strategy')
+    .insertAdjacentHTML('beforeend',
+    `<div id="${start_uuid}" class="bot card p-3">
+                <div class="bot-header">
+                    <p class="text-center">
+                        <strong>Старт</strong>
+                    </p>
+                </div>
+                <div class="bot-body">
+                    <div class="dropdown">
+                        <button class="btn btn-cb dropdown-toggle w-100"
+                                type="button"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Реакция
+                        </button>
+                        <ul class="dropdown-menu w-100">
+                            <li>
+                                <button type="button" class="dropdown-item" onclick="addBotStrategy('${start_uuid}')">Сообщение</button>
+                                <button type="button" class="dropdown-item" onclick="addBotCondition()">Условие</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="botButtonList0" class="bot-footer" style="display: none"></div>
+            </div>`);
 let chain_index = null;
 let addBotStrategy = function(startElement, button_uuid=null)
 {
-    const index = document.querySelectorAll('.bot').length;
-    const idx = `bot_strategy_${index}`;
+    const index = `action-${GENERATE_UUID()}`;
+    const idx = index;
     // Создание данных реакции
     bot.messages_chain.push({id: index, text: '', buttons: [], next_step: null});
 
     document.getElementById('bot_strategy').insertAdjacentHTML(
         'beforeend',
-         `<div id="${idx}" class="bot bot-dialog card p-3">
+         `<div id="${index}" class="bot bot-dialog card p-3">
                 <div class="bot-header">
                   <p class="text-center">
-                    <strong>Сообщение</strong>
+                    <strong onclick="add_active('${index}', 'children')">Сообщение</strong>
                   </p>
                 </div>
                 <div class="bot-body">
@@ -68,14 +134,15 @@ let addBotStrategy = function(startElement, button_uuid=null)
                         type="button" 
                         role="button" 
                         data-bs-toggle="dropdown" 
-                        aria-expanded="false">
+                        aria-expanded="false"
+                        onclick="add_active('${index}', 'children')">
                       Реакция
                     </button>
                     <ul class="dropdown-menu w-100">
                       <li>
                         <button type="button" 
                             class="dropdown-item" 
-                            onclick="addBotStrategy('${idx}')">Сообщение</button>
+                            onclick="addBotStrategy('${index}')">Сообщение</button>
                         <button type="button" 
                             class="dropdown-item" 
                             onclick="addBotCondition()">Условие</button>
@@ -123,7 +190,7 @@ let addBotStrategy = function(startElement, button_uuid=null)
     document.querySelector(`#${idx}`).addEventListener(
     'click', function (event){
         let dom_id = event.target.id;
-        message.render(dom_id.split('_')[2]);
+        message.render(dom_id);
     });
 }
 let addBotCondition = function()
@@ -281,7 +348,16 @@ class InputChainInfo
     }
 }
 
-function setTextChain() { bot.messages_chain[chain_index].text = document.getElementById('inputChainText').value; }
+function setTextChain() {
+    for (let i=0; i < bot.messages_chain.length; i++)
+    {
+        if (bot.messages_chain[i].id === chain_index)
+        {
+            bot.messages_chain[i].text = document.getElementById('inputChainText').value;
+        }
+    }
+
+}
 
 class BotFactory
 {
@@ -346,9 +422,19 @@ class InfoMessageBot extends AbstractInfoMessageBot
         {
             document.querySelectorAll('#inputChainButtonGroupContainer')[i].style.display = 'none';
         }
-        for (let i=0; i < bot.messages_chain[chain_index].buttons.length; i++)
+        // for (let i=0; i < bot.messages_chain[chain_index].buttons.length; i++)
+        for (var i=0; i < bot.messages_chain.length; i++)
         {
-            document.querySelector(`.button-${bot.messages_chain[chain_index].buttons[i].id}`).style.display = 'block';
+            if (bot.messages_chain[i].id === `action-${chain_index}`)
+            {
+                for (let x=0; x < bot.messages_chain[i].buttons.length; x++)
+                {
+                    document
+                        .querySelector(`.button-${bot.messages_chain[i].buttons[x].id}`)
+                        .style
+                        .display = 'block';
+                }
+            }
         }
     }
     render(chain_id)
@@ -359,12 +445,8 @@ class InfoMessageBot extends AbstractInfoMessageBot
         // Выборка данных из bot.messages_chain
         let chain = new InputChainInfo();
         chain.getChain(chain_id);
-        // Выделить активным элемент
-        for (let i =0; i < document.querySelectorAll('.bot').length; i++)
-        {
-            document.querySelectorAll('.bot')[i].classList.remove('bot-active');
-        }
-        document.querySelector(`#bot_strategy_${chain_id}`).classList.add('bot-active');
+        // Элемент активный
+        add_active(chain_id);
         // Рендер клавиатуры
         this.buttonRender(chain_id);
     }
@@ -374,14 +456,10 @@ class InfoMessageBot extends AbstractInfoMessageBot
 const info = new InfoBot();
 document.getElementById('bot').addEventListener('click', function (event){
     info.render();
-    for (let i =0; i < document.querySelectorAll('.bot').length; i++)
-    {
-        document.querySelectorAll('.bot')[i].classList.remove('bot-active');
-    }
     chain_index = null;
 });
 
 const message = new InfoMessageBot();
-document.getElementById('bot_strategy_0').addEventListener('click', function (event){
-    message.render(0);
+document.getElementById(start_uuid).addEventListener('click', function (event){
+    message.render(`action-${idx}`);
 });
