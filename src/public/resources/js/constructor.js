@@ -1,3 +1,5 @@
+// TODO: Проверить разные способы сборок (нестандартные)
+// TODO: Сделать условия для действий и пользовательскими событиями
 /*
 * Пример:
 {
@@ -108,7 +110,7 @@ document.querySelector('#bot_strategy')
                         </ul>
                     </div>
                 </div>
-                <div id="botButtonList0" class="bot-footer" style="display: none"></div>
+                <div id="botButtonList-${start_uuid}" class="bot-footer" style="display: none"></div>
             </div>`);
 let chain_index = null;
 let addBotStrategy = function(startElement, button_uuid=null)
@@ -150,13 +152,14 @@ let addBotStrategy = function(startElement, button_uuid=null)
                     </ul>
                   </div>
                 </div>
-                <div id="botButtonList${chain_index + 1}" class="bot-footer" style="display: none"></div>
+                <div id="botButtonList-${index}" class="bot-footer" style="display: none"></div>
               </div>`
     );
 
     let i=0;
     while (i < bot.messages_chain.length)
     {
+        // TODO: в первом шаге создаёт связь кнопки и действия, в последующих нет, разобраться
         if (bot.messages_chain[i].id === startElement.split('_')[2])
         {
             bot.messages_chain[i].next_step = index;
@@ -209,7 +212,7 @@ let addButtonChain = function ()
                     <input type="text" 
                         id="inputChainButtonText" 
                         class="form-control"
-                        oninput="setChainButtonText('${uuid}')">
+                        oninput="setChainButtonText('${uuid}', ${document.querySelectorAll('#botButtonTextElement'+ chain_index).length})">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Тип кнопки</label>
@@ -272,15 +275,20 @@ let addButtonChain = function ()
             </div>
         </div>
     `);
-    bot.messages_chain[chain_index].buttons.push({
-        id: uuid,
-        type: 'repty',
-        text: '',
-        url: '',
-        next_step: null
-    });
-
-    let el = document.getElementById(`botButtonList${chain_index}`);
+    for (i=0; i < bot.messages_chain.length; i++)
+    {
+        if (bot.messages_chain[i].id === chain_index)
+        {
+            bot.messages_chain[i].buttons.push({
+                id: uuid,
+                type: 'repty',
+                text: '',
+                url: '',
+                next_step: null
+            });
+        }
+    }
+    let el = document.getElementById(`botButtonList-${chain_index}`);
     el.style.display = 'block';
     el.insertAdjacentHTML(
 'beforeend',
@@ -292,24 +300,39 @@ let addButtonChain = function ()
 function getButtonCollection(uuid)
 {
     let data = null;
-    for (let i=0; i < bot.messages_chain[chain_index].buttons.length; i++)
+    for (var i=0; i < bot.messages_chain.length; i++)
     {
-        if (bot.messages_chain[chain_index].buttons[i].id === uuid)
+        for (let x=0; x < bot.messages_chain[i].buttons.length; x++)
         {
-            data = bot.messages_chain[chain_index].buttons[i];
+            if (uuid === bot.messages_chain[i].buttons[x].id)
+            {
+                data = bot.messages_chain[i].buttons[x];
+            }
         }
     }
+    // for (let i=0; i < bot.messages_chain[chain_index].buttons.length; i++)
+    // {
+    //     if (bot.messages_chain[chain_index].buttons[i].id === uuid)
+    //     {
+    //         data = bot.messages_chain[chain_index].buttons[i];
+    //     }
+    // }
     return data;
 }
-let setChainButtonText = function (uuid)
+let setChainButtonText = function (uuid, idx)
 {
     let button = getButtonCollection(uuid);
     button.text = document.getElementById('inputChainButtonText').value;
-    for (let i=0; i < document.querySelectorAll(`#botButtonTextElement${chain_index}`).length; i++)
+    for (var i=0; i < bot.messages_chain.length; i++)
     {
-        document.querySelectorAll(`#botButtonTextElement${chain_index}`)[i].innerText = bot.messages_chain[chain_index].buttons[i].text;
+        for (let x=0; x < bot.messages_chain[i].buttons.length; x++)
+        {
+            if (uuid === bot.messages_chain[i].buttons[x].id)
+            {
+                document.querySelectorAll(`#botButtonTextElement${chain_index}`)[idx].innerText = bot.messages_chain[i].buttons[x].text;
+            }
+        }
     }
-
     return button;
 }
 let setChainButtonType = function(uuid, button_type)
@@ -422,10 +445,9 @@ class InfoMessageBot extends AbstractInfoMessageBot
         {
             document.querySelectorAll('#inputChainButtonGroupContainer')[i].style.display = 'none';
         }
-        // for (let i=0; i < bot.messages_chain[chain_index].buttons.length; i++)
         for (var i=0; i < bot.messages_chain.length; i++)
         {
-            if (bot.messages_chain[i].id === `action-${chain_index}`)
+            if (bot.messages_chain[i].id === `${chain_index}`)
             {
                 for (let x=0; x < bot.messages_chain[i].buttons.length; x++)
                 {

@@ -86,7 +86,7 @@ ul li{
     padding: 0.2em;
 }
 .bot-active{
-    border: solid 0.15em rgb(179 47 164 / 29%)!important;
+    border: solid 0.15em rgb(249 129 0) !important;
 }
 .bot-dialog{
     position: relative;
