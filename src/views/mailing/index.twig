@@ -1,0 +1,174 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mailing-top-panel mt-10 mb-5">
+            <div class="col-8">
+                <h4>Рассылки</h4>
+            </div>
+            <div class="col-4 d-flex justify-content-end">
+                <button type="button"
+                        class="btn btn-cb"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Добавить рассылку</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 mb-3">
+                <a href="/mailing/show?id=">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex">
+                                <div style="width: 10%"><img src="{{ base_url }}/{{ load_static('images/free-icon-sending.png') }}" class="card-img-top" alt="38962"></div>
+                                Рассылка: <strong>№38962</strong></h5>
+                        </div>
+                        <div class="card-body mailling-card-statistic">
+                            <p class="card-text"><small>Статус:</small> <b>В процессе</b></p>
+                            <p class="card-text"><small>Платформа:</small> <b>Телеграм</b></p>
+                            <p class="card-text"><small>Рассылает бот:</small> <b>Тестовый бот</b></p>
+                        </div>
+                        <div class="card-body">
+                            <form action="#" method="GET">
+                                <input type="submit" class="btn btn-danger" value="Остановить">
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex">
+                            <div style="width: 10%"><img src="{{ base_url }}/{{ load_static('images/free-icon-sending.png') }}" class="card-img-top" alt="38962"></div>
+                            Рассылка: <strong>№38962</strong></h5>
+                    </div>
+                    <div class="card-body mailling-card-statistic">
+                        <p class="card-text"><small>Статус:</small> <b>В процессе</b></p>
+                        <p class="card-text"><small>Платформа:</small> <b>Телеграм</b></p>
+                        <p class="card-text"><small>Рассылает бот:</small> <b>Тестовый бот</b></p>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="GET">
+                            <input type="submit" class="btn btn-danger" value="Остановить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex">
+                            <div style="width: 10%"><img src="{{ base_url }}/{{ load_static('images/free-icon-call.png') }}" class="card-img-top" alt="38962"></div>
+                            Обзвон: <strong>№38962</strong></h5>
+                    </div>
+                    <div class="card-body mailling-card-statistic">
+                        <p class="card-text"><small>Статус:</small> <b>В процессе</b></p>
+                        <p class="card-text"><small>Платформа:</small> <b>Телеграм</b></p>
+                        <p class="card-text"><small>Рассылает бот:</small> <b>Тестовый бот</b></p>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="GET">
+                            <input type="submit" class="btn btn-danger" value="Остановить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex">
+                            <div style="width: 10%"><img src="{{ base_url }}/{{ load_static('images/free-icon-sending.png') }}" class="card-img-top" alt="38962"></div>
+                            Рассылка: <strong>№38962</strong></h5>
+                    </div>
+                    <div class="card-body mailling-card-statistic">
+                        <p class="card-text"><small>Статус:</small> <b>В процессе</b></p>
+                        <p class="card-text"><small>Платформа:</small> <b>Телеграм</b></p>
+                        <p class="card-text"><small>Рассылает бот:</small> <b>Тестовый бот</b></p>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="GET">
+                            <input type="submit" class="btn btn-danger" value="Остановить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex">
+                            <div style="width: 10%"><img src="{{ base_url }}/{{ load_static('images/free-icon-call.png') }}" class="card-img-top" alt="38962"></div>
+                            Обзвон: <strong>№38962</strong></h5>
+                    </div>
+                    <div class="card-body mailling-card-statistic">
+                        <p class="card-text"><small>Статус:</small> <b>В процессе</b></p>
+                        <p class="card-text"><small>Платформа:</small> <b>Телеграм</b></p>
+                        <p class="card-text"><small>Рассылает бот:</small> <b>Тестовый бот</b></p>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="GET">
+                            <input type="submit" class="btn btn-danger" value="Остановить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex">
+                            <div style="width: 10%"><img src="{{ base_url }}/{{ load_static('images/free-icon-sending.png') }}" class="card-img-top" alt="38962"></div>
+                            Рассылка: <strong>№38962</strong></h5>
+                    </div>
+                    <div class="card-body mailling-card-statistic">
+                        <p class="card-text"><small>Статус:</small> <b>В процессе</b></p>
+                        <p class="card-text"><small>Платформа:</small> <b>Телеграм</b></p>
+                        <p class="card-text"><small>Рассылает бот:</small> <b>Тестовый бот</b></p>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="GET">
+                            <input type="submit" class="btn btn-danger" value="Остановить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#  Modal add mailling app  #}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Добавить рассылку</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Выберите бота <b>*</b></label>
+                        <select class="form-select" name="bot_jobs" aria-label="Default select example">
+                            <option selected>---</option>
+                            <option value="1">Бот 1</option>
+                            <option value="1">Бот 2</option>
+                            <option value="1">Бот 3</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Канал <b>*</b></label>
+                        <input type="text" name="channel_jobs" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Сообщение</label>
+                        <textarea name="message_jobs" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Добавить изображение</label>
+                        <input type="file" name="image_jobs" accept="image/png,image/jpg,image/webp" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Добавить видео</label>
+                        <input type="file" name="video_jobs" accept="video/mp4,video/mp3" class="form-control">
+                    </div>
+                    <button type="button" class="btn btn-cb w-100">Создать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,259 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-10">
+            <h4 class="card-title d-flex mb-4">
+                <div style="width: 2%"><img src="{{ base_url }}/{{ load_static('images/free-icon-sending.png') }}" class="card-img-top" alt="38962"></div>
+                Рассылка: <strong>№38962</strong>
+            </h4>
+            <div class="alert alert-success" role="alert">
+                Рассылка успешно завершена!
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Бот</th>
+                            <th scope="col">Платфрома</th>
+                            <th scope="col">Получателей</th>
+                            <th scope="col">Неполучило</th>
+                            <th scope="col">Всего</th>
+                            <th scope="col">Затраченое время</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Тестовый бот</td>
+                            <td>Вконтакте</td>
+                            <td>52</td>
+                            <td>3</td>
+                            <td>55</td>
+                            <td>7 секунд</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-5 mb-4">
+                    <h4>Ваше сообщение:</h4>
+                    <div class="card p-4">
+                        <p>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam commodi dolorum et ex
+                            fugiat iusto laborum omnis, praesentium quisquam? Aperiam ex illum minus quisquam? Deserunt
+                            eius inventore itaque laboriosam quo?</span><span>A at consectetur consequuntur cum dolores
+                            doloribus eum exercitationem explicabo facilis impedit itaque libero natus nemo nobis odit
+                            placeat quo repellat repellendus sapiente sed soluta tempore temporibus, totam vitae
+                            voluptatibus?Aliquam corporis deserunt dicta et expedita explicabo magni minus placeat
+                            repellat, voluptates. Alias, deleniti ducimus, error esse expedita harum inventore
+                            laboriosam, laudantium minima omnis provident quae quaerat quos tempora voluptatem?
+                        </span>
+                        </p>
+                        <div class="row">
+                            <div class="col-6">
+                                <img src="https://cs6.pikabu.ru/post_img/big/2014/03/08/8/1394279501_869951594.jpg" class="img-fluid" alt="Путин">
+                            </div>
+
+                            <div class="col-6">
+                                <iframe class="w-100 h-100"
+                                        src="https://www.youtube.com/embed/L8gECJQ1LKs"
+                                        title="Сюжет всех частей STALKER в одном видео. Хронология."
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen></iframe>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <button type="button" class="btn btn-primary w-100">Типа кнопка</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <h4>Лог отправки:</h4>
+                    <div class="d-flex justify-content-end mb-4">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Времянной фактор</th>
+                            <th scope="col">Статус</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(15, 140, 51, 1);">
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path>
+                                    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(15, 140, 51, 1);">
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z">
+
+                                    </path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(15, 140, 51, 1);">
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z">
+
+                                    </path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(158, 23, 23, 1);">
+                                    <path d="M11 7h2v7h-2zm0 8h2v2h-2z"></path>
+                                    <path d="m21.707 7.293-5-5A.996.996 0 0 0 16 2H8a.996.996 0 0 0-.707.293l-5 5A.996.996 0 0 0 2 8v8c0 .266.105.52.293.707l5 5A.996.996 0 0 0 8 22h8c.266 0 .52-.105.707-.293l5-5A.996.996 0 0 0 22 16V8a.996.996 0 0 0-.293-.707zM20 15.586 15.586 20H8.414L4 15.586V8.414L8.414 4h7.172L20 8.414v7.172z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(158, 23, 23, 1);">
+                                    <path d="M11 7h2v7h-2zm0 8h2v2h-2z"></path>
+                                    <path d="m21.707 7.293-5-5A.996.996 0 0 0 16 2H8a.996.996 0 0 0-.707.293l-5 5A.996.996 0 0 0 2 8v8c0 .266.105.52.293.707l5 5A.996.996 0 0 0 8 22h8c.266 0 .52-.105.707-.293l5-5A.996.996 0 0 0 22 16V8a.996.996 0 0 0-.293-.707zM20 15.586 15.586 20H8.414L4 15.586V8.414L8.414 4h7.172L20 8.414v7.172z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(15, 140, 51, 1);">
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z">
+
+                                    </path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(15, 140, 51, 1);">
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z">
+
+                                    </path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>01.01.2020 03:15:01</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     style="fill: rgba(158, 23, 23, 1);">
+                                    <path d="M11 7h2v7h-2zm0 8h2v2h-2z"></path>
+                                    <path d="m21.707 7.293-5-5A.996.996 0 0 0 16 2H8a.996.996 0 0 0-.707.293l-5 5A.996.996 0 0 0 2 8v8c0 .266.105.52.293.707l5 5A.996.996 0 0 0 8 22h8c.266 0 .52-.105.707-.293l5-5A.996.996 0 0 0 22 16V8a.996.996 0 0 0-.293-.707zM20 15.586 15.586 20H8.414L4 15.586V8.414L8.414 4h7.172L20 8.414v7.172z"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        new Chart(document.getElementById('myChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Мужчин', 'Женщин'],
+                datasets: [{
+                    label: 'Гендер',
+                    data: [12, 19],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        new Chart(document.getElementById('myChart2'), {
+            type: 'line',
+            data: {
+                labels: ['ЛС открыта', 'Аккаунт удалён', 'Заблокирован', 'ЛС закрыта'],
+                datasets: [{
+                    label: 'Доступы',
+                    data: [220, 9, 77, 22],
+                    borderWidth: 1
+                }]
+            },
+        });
+    </script>
+{% endblock %}

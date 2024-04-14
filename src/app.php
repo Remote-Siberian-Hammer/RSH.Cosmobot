@@ -4,6 +4,7 @@ global $container;
 
 use Http\Controllers\HomeController;
 use Http\Controllers\BotController;
+use http\Controllers\MailingController;
 use Http\Controllers\UserController;
 use Http\Controllers\Form\UserFormController;
 use Http\Controllers\Form\BotFormController;
@@ -44,5 +45,14 @@ $app->with('/bot', function () use ($app, $container) {
     });
     $app->get('/constructor', function () use ($container) {
         return $container->get(BotController::class)->get_creator();
+    });
+});
+
+$app->with('/mailing', function () use ($app, $container) {
+    $app->respond('GET','/', function () use ($app, $container) {
+        return $container->get(MailingController::class)->index();
+    });
+    $app->respond('GET','/show', function () use ($app, $container) {
+        return $container->get(MailingController::class)->show();
     });
 });

@@ -5,6 +5,7 @@ use DI\Container;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
+use http\Controllers\MailingController;
 use Http\Factory\SocialTelegramFactory;
 use Http\Factory\SocialVkFactory;
 use Http\Controllers\BotController;
@@ -20,6 +21,7 @@ use Twig\TwigFunction;
 
 
 require_once dirname(__DIR__) . "/vendor/autoload.php";
+require_once dirname(__DIR__) . '/http/Controllers/MailingController.php';
 require_once dirname(__DIR__) . '/http/Controllers/BotController.php';
 require_once dirname(__DIR__) . '/http/Controllers/HomeController.php';
 require_once dirname(__DIR__) . '/http/Controllers/UserController.php';
@@ -78,6 +80,9 @@ $container
         ->constructor($container->get(Environment::class)));
 $container
     ->set(UserController::class, DI\autowire(UserController::class)
+        ->constructor($container->get(Environment::class)));
+$container
+    ->set(MailingController::class, DI\autowire(MailingController::class)
         ->constructor($container->get(Environment::class)));
 // Request controllers
 $container

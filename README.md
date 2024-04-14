@@ -48,13 +48,6 @@
         <p>
             <span>Установить зависимости:</span><br>
             <code><b>sudo docker-compose run composer install</b><br>
-            <b>sudo docker-compose run npm install</b></code>
-        </p>
-    </li>
-    <li>
-        <p>
-            <span>Запуск сборщика фронтенда:</span><br>
-            <code><b>sudo docker-compose run npm run dev</b></code>
         </p>
     </li>
     <li>

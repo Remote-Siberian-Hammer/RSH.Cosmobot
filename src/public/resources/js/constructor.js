@@ -212,7 +212,7 @@ let addButtonChain = function ()
                     <input type="text" 
                         id="inputChainButtonText" 
                         class="form-control"
-                        oninput="setChainButtonText('${uuid}', ${document.querySelectorAll('#botButtonTextElement'+ chain_index).length})">
+                        oninput="setChainButtonText('action-${uuid}', ${document.querySelectorAll('#botButtonTextElement'+ chain_index).length})">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Тип кнопки</label>
