@@ -81,20 +81,20 @@ services:
     volumes:
       - ./db-data/mongo/:/data/mongo
 
-  mongodoctrine:
-    image: mongo:4.2.6-bionic
-    ports:
-      - 16793:16793
-    # connections:
-    #     default:
-    #         server: "mongodb://172.18.0.3:16793"
-    #         options: {}
-    environment:
-      - MONGO_INITDB_DATABASE=dom_cache
-      - MONGO_INITDB_ROOT_USERNAME=raptor
-      - MONGO_INITDB_ROOT_PASSWORD=lama22
-    volumes:
-      - ./db-data/mongo/:/data/mongo
+  # mongodoctrine:
+  #   image: mongo:4.2.6-bionic
+  #   ports:
+  #     - 16793:16793
+  #   # connections:
+  #   #     default:
+  #   #         server: "mongodb://172.18.0.3:16793"
+  #   #         options: {}
+  #   environment:
+  #     - MONGO_INITDB_DATABASE=dom_cache
+  #     - MONGO_INITDB_ROOT_USERNAME=raptor
+  #     - MONGO_INITDB_ROOT_PASSWORD=lama22
+  #   volumes:
+  #     - ./db-data/mongo/:/data/mongo
 #    networks:
 #      - web_db_mongo
 # TODO: Подключить кафку

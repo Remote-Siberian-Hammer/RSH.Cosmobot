@@ -30,7 +30,7 @@ if ( ! file_exists($file = "../vendor/autoload.php")) {
 $loader = require_once $file;
 
 // $client = new Client('mongodb://127.0.0.1', [], ['typeMap' => DocumentManager::CLIENT_TYPEMAP]);
-$client = new DoctrineMongoClient("mongodb://raptor:lama22@172.18.0.2:27017", ['typeMap' => DocumentManager::CLIENT_TYPEMAP]);
+$client = new DoctrineMongoClient("mongodb://raptor:lama22@172.18.0.5:27017", [], ['typeMap' => DocumentManager::CLIENT_TYPEMAP]);
 
 
 $config = new Configuration();
