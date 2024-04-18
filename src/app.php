@@ -45,4 +45,13 @@ $app->with('/bot', function () use ($app, $container) {
     $app->get('/constructor', function () use ($container) {
         return $container->get(BotController::class)->get_creator();
     });
+    $app->with('/my_bots', function () use ($app, $container) {
+        $app->get('', function () use ($container) {
+            return $container->get(BotController::class)->bot_list();
+        });
+        $app->get('/details', function () use ($container) {
+            return $container->get(BotController::class)->details($_GET);
+        });
+    });
 });
+
