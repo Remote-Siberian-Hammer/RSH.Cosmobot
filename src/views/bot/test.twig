@@ -1,0 +1,23 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+
+    {% for cookie in cookies %}
+        <h3>{{ cookie }}</h3>
+    {% endfor %}
+
+    <hr/>
+
+    {% for item in session %}
+        <h3>{{ item }}</h3>
+    {% endfor %}
+
+    <hr/>
+
+    <h3>ip === {{ ip["ip"] }}</h3>
+
+    <hr/>
+
+    <p>{{ rendered }}</p>
+
+{% endblock %}

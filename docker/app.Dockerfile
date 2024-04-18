@@ -7,4 +7,5 @@ RUN apt-get update && \
     docker-php-ext-install pdo pdo_pgsql pgsql
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
-
+RUN pecl install mongodb \
+       && docker-php-ext-enable mongodb
