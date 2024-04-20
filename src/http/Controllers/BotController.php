@@ -9,10 +9,12 @@ use Twig\Environment;
 class BotController
 {
     private Environment $_view;
+    private DomCacheRepository $_domCacheRepository;
 
-    public function __construct(Environment $view)
+    public function __construct(Environment $view, DomCacheRepository $domCacheRepository)
     {
         $this->_view = $view;
+        $this->_domCacheRepository = $domCacheRepository;
     }
 
     public function get_creator()
@@ -22,32 +24,14 @@ class BotController
 
     public function post($documentManager)
     {
-        // $cookies = array();
-
-        // foreach ($_COOKIE as $key => $value)
-        // {
-        //     $cookies[$key] = $key ."===" . $value;
-        // }
-
-        // $domdoc = new DOMDocument();
-        //$domdoc->loadHTMLFile
-        
         if (!isset($_COOKIE["user_id"]))
         {
-          $repo = new DomCacheRepository();
+          $this->_domCacheRepository->cache($documentManager, $this->getClientIp()["ip"], $this->_view->render("bot/constructor.twig", []));
 
-          $repo->cache($documentManager, $this->getClientIp()["ip"], $this->_view->render("bot/constructor.twig", []));
-
-          // $httpDom = new Dom();
-
-          // $httpDom->setIp($this->getClientIp()["ip"]);
-          // $httpDom->setDom($this->_view->render("bot/constructor.twig", []));
-
-          // $documentManager->persist($httpDom);
-          // $documentManager->flush();
-
-          return "ABC";
+          return "Пользователь не был авторизован. Предыдущая страница кэширована";
         }
+
+        return "Пользователь был авторизован";
     }
 
     private function getClientIp() {

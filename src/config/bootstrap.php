@@ -21,16 +21,14 @@ use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
 use MongoDB\Client as DoctrineMongoClient;
-
+use Repository\DomCacheRepository;
 
 if ( ! file_exists($file = "../vendor/autoload.php")) {
     throw new RuntimeException('Install dependencies to run this script.');
 }
 
 $loader = require_once $file;
-
-// $client = new Client('mongodb://127.0.0.1', [], ['typeMap' => DocumentManager::CLIENT_TYPEMAP]);
-$client = new DoctrineMongoClient("mongodb://raptor:lama22@172.18.0.5:27017", [], ['typeMap' => DocumentManager::CLIENT_TYPEMAP]);
+$client = new DoctrineMongoClient("mongodb://raptor:lama22@cosmobot-mongodb-1:27017", [], ['typeMap' => DocumentManager::CLIENT_TYPEMAP]);
 
 
 $config = new Configuration();
@@ -92,6 +90,8 @@ $container->set(Environment::class, $view);
 // Factory
 $container->set(SocialTelegramFactory::class, new SocialTelegramFactory());
 $container->set(SocialVkFactory::class, new SocialVkFactory());
+// Repository
+$container->set(DomCacheRepository::class, new DomCacheRepository());
 // Services
 $container->set(BotService::class, DI\autowire(BotService::class)
     ->constructor($container->get(Client::class)));
@@ -114,4 +114,4 @@ $container
         ));
 $container
     ->set(BotFormController::class, DI\autowire(BotFormController::class)
-        ->constructor($container->get(BotService::class)));
+        ->constructor($container->get(BotService::class), $container->get(DomCacheRepository::class)));
