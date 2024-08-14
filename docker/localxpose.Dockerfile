@@ -1,1 +1,0 @@
-FROM ngrok:3-alpine
