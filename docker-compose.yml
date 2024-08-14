@@ -1,0 +1,157 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: ${NAME}_nginx
+    hostname: ${NAME}_nginx
+    restart: always
+    ports:
+      - ${HTTP_PORT}:80
+    build:
+      context: ${DOCKER_PATH}/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./${DOCKER_PATH}/${HTTP_LOCAL_CONFIG_PATH}:${HTTP_CONTAINER_CONFIG_PATH}:ro
+      - ./${APP_LOCAL_PATH}:${APP_CONTAINER_PATH}
+
+  web-nginx:
+    container_name: ${NAME}_web-nginx
+    hostname: ${NAME}_web-nginx
+    restart: always
+    ports:
+      - ${HTTP_FRONTEND_PORT}:5000
+    build:
+      context: ${DOCKER_PATH}/nginx
+      dockerfile: web.Dockerfile
+    volumes:
+      - ./${DOCKER_PATH}/${HTTP_LOCAL_CONFIG_FRONTEND_PATH}:${HTTP_CONTAINER_FRONTEND_CONFIG_PATH}:ro
+      - ./${APP_FRONTEND_LOCAL_PATH}:${APP_FRONTEND_CONTAINER_PATH}
+
+  postgres:
+    container_name: ${NAME}_postgres
+    hostname: ${NAME}_postgres
+    restart: always
+    ports:
+      - ${POSTGRES_PORT}:5432
+    build:
+      context: ${DOCKER_PATH}/postgres
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_ROOT_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - dbdata:${POSTGRES_DBDATA}
+
+  mongodb:
+    container_name: ${NAME}_mongodb
+    hostname: ${NAME}_mongodb
+    ports:
+      - ${MONGO_PORT}:27017
+    build:
+      context: ${DOCKER_PATH}/mongo
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./data/mongo/:${MONGO_DBDATA}
+
+  rabbitmq:
+    container_name: ${NAME}_rabbitmq
+    hostname: ${NAME}_rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+      - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_VHOST}
+    build:
+      context: ${DOCKER_PATH}/rabbitmq
+      dockerfile: Dockerfile
+    ports:
+      - ${RABBITMQ_PORT_CLIENT}:5672
+      - ${RABBITMQ_PORT}:15672
+    volumes:
+      - ./${DOCKER_PATH}/${RABBITMQ_CONFIG_PATH}:/etc/rabbitmq/rabbitmq.conf:ro
+
+  php-fpm:
+    container_name: ${NAME}_php-fpm
+    hostname: ${NAME}_php-fpm
+    environment:
+      docker: "true"
+    extra_hosts:
+      - ${PHP_FPM_EXTRA_HOST}
+    build:
+      context: ${DOCKER_PATH}/php-fpm
+      dockerfile: Dockerfile
+      args:
+        - INSTALL_FAKETIME=false
+        - INSTALL_LOCALES_ADDITIONAL=false
+        - LOCALES_ADDITIONAL=${LOCALES_ADDITIONAL}
+        - LOCALE=${LOCALE_DEFAULT}
+        - TIMEZONE=${TIMEZONE_DEFAULT}
+        - http_proxy
+        - https_proxy
+        - no_proxy
+        - PUID=${PUID}
+        - PGID=${PGID}
+    env_file:
+      - ${DOCKER_PATH}/php-fpm/xdebug.env
+    volumes:
+      - ./${APP_LOCAL_PATH}:${APP_CONTAINER_PATH}
+      - ./${DOCKER_PATH}/php-fpm/php.ini:${PHP_FPM_CONFIG_PATH}:ro
+    depends_on:
+      - nginx
+      - postgres
+      - mongodb
+      - rabbitmq
+
+  node:
+    container_name: ${NAME}_node
+    hostname: ${NAME}_node
+    environment:
+      docker: "true"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./${APP_FRONTEND_LOCAL_PATH}:${APP_FRONTEND_CONTAINER_PATH}
+    depends_on:
+      - web-nginx
+
+  localxpose:
+    container_name: ${NAME}_localxpose
+    hostname: ${NAME}_localxpose
+    image: localxpose/localxpose:latest
+    restart: unless-stopped
+    command: tunnel -r http --to bot:9000
+    environment:
+      ACCESS_TOKEN: GMz8SkPJXg9PG8HRykQED9cOTLUc5tBrTx9BgRxs
+
+  python-bot:
+    container_name: ${NAME}_python-bot
+    hostname: ${NAME}_python-bot
+    build:
+      context: ${DOCKER_PATH}/python-bot
+      dockerfile: Dockerfile
+    ports:
+      - ${HTTP_BOT_PORT}:9000
+    environment:
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=True
+      - CONN_STR=mongodb://user:pass@mongodb
+    volumes:
+      - ./${APP_BOT_LOCAL_PATH}:${APP_BOT_CONTAINER_PATH}
+    command: python main.py
+    depends_on:
+      - nginx
+      - postgres
+      - php-fpm
+      - web-nginx
+      - localxpose
+
+volumes:
+  dbdata:
+    driver: local
